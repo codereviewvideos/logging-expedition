@@ -30,6 +30,7 @@ services:
 
     App\Event\Subscriber\LoggingSomeEventSubscriber:
         decorates: App\Event\Subscriber\SomeEventSubscriber
+        arguments: ['@App\Event\Subscriber\LoggingSomeEventSubscriber.inner']
 
 
 
@@ -38,3 +39,8 @@ services:
     App\Repository\LoggingSomeFakeRepository:
         decorates: App\Repository\SomeFakeRepository
         arguments: ['@App\Repository\LoggingSomeFakeRepository.inner']
+
+
+
+    App\Controller\LoggingSomePayloadController:
+        decorates: App\Controller\SomePayloadController
