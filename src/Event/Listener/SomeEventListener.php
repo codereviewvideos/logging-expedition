@@ -21,6 +21,12 @@ final class SomeEventListener implements EventSubscriberInterface
      */
     private $logger;
 
+    /**
+     * SomeEventListener constructor.
+     *
+     * @param SomeRepositoryInterface $someRepository
+     * @param LoggerInterface         $logger
+     */
     public function __construct(SomeRepositoryInterface $someRepository, LoggerInterface $logger)
     {
         $this->someRepository = $someRepository;

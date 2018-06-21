@@ -34,7 +34,7 @@ class SomePayloadController extends Controller
     }
 
     /**
-     * @Route("/{placeholder}", name="some_payload")
+     * @Route("/log-tester/{placeholder}", name="some_payload")
      * @param string $placeholder
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
