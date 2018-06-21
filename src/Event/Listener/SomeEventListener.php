@@ -16,18 +16,29 @@ final class SomeEventListener implements EventSubscriberInterface
      */
     private $someRepository;
 
+    /**
+     * SomeEventListener constructor.
+     *
+     * @param SomeRepositoryInterface $someRepository
+     */
     public function __construct(SomeRepositoryInterface $someRepository)
     {
         $this->someRepository = $someRepository;
     }
-    
+
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
-           Events::SOME_EVENT => 'onSomeEvent',
+            Events::SOME_EVENT => 'onSomeEvent',
         ];
     }
 
+    /**
+     * @param SomeEvent $event
+     */
     public function onSomeEvent(SomeEvent $event)
     {
         $this->someRepository->save(
