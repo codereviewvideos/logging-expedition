@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Listener;
+namespace App\Event\Listener;
 
 use App\Event\Events;
 use App\Event\SomeEvent;
