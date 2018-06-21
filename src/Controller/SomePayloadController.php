@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class SomePayloadController extends Controller
+final class SomePayloadController extends Controller
 {
     /**
      * @var EventDispatcherInterface
