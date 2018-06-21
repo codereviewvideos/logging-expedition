@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Event\Listener;
+namespace App\Event\Subscriber;
 
 use App\Event\Events;
 use App\Event\SomeEvent;
@@ -10,7 +10,7 @@ use App\Repository\SomeRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-final class SomeEventListener implements EventSubscriberInterface
+final class SomeEventSubscriber implements EventSubscriberInterface
 {
     /**
      * @var SomeRepositoryInterface
@@ -22,7 +22,7 @@ final class SomeEventListener implements EventSubscriberInterface
     private $logger;
 
     /**
-     * SomeEventListener constructor.
+     * SomeEventSubscriber constructor.
      *
      * @param SomeRepositoryInterface $someRepository
      * @param LoggerInterface         $logger
@@ -36,7 +36,7 @@ final class SomeEventListener implements EventSubscriberInterface
     /**
      * @return array
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             Events::SOME_EVENT => 'onSomeEvent',
@@ -46,7 +46,7 @@ final class SomeEventListener implements EventSubscriberInterface
     /**
      * @param SomeEvent $event
      */
-    public function onSomeEvent(SomeEvent $event)
+    public function onSomeEvent(SomeEvent $event): void
     {
         $this->logger->debug('onSomeEvent', ['payload' => $event->getSomePayload()]);
 
