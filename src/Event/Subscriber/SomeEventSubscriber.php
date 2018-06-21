@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Event\Listener;
+namespace App\Event\Subscriber;
 
 use App\Event\Events;
 use App\Event\SomeEvent;
 use App\Repository\SomeRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-final class SomeEventListener implements EventSubscriberInterface
+final class SomeEventSubscriber implements EventSubscriberInterface
 {
     /**
      * @var SomeRepositoryInterface
@@ -17,7 +17,7 @@ final class SomeEventListener implements EventSubscriberInterface
     private $someRepository;
 
     /**
-     * SomeEventListener constructor.
+     * SomeEventSubscriber constructor.
      *
      * @param SomeRepositoryInterface $someRepository
      */
