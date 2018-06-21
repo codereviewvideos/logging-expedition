@@ -15,7 +15,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Event,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -26,4 +26,15 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Event\Listener
+    App\Event\Subscriber\SomeEventSubscriberInterface: '@App\Event\Subscriber\SomeEventSubscriber'
+
+    App\Event\Subscriber\LoggingSomeEventSubscriber:
+        decorates: App\Event\Subscriber\SomeEventSubscriber
+
+
+
+    App\Repository\SomeRepositoryInterface: '@App\Repository\SomeFakeRepository'
+
+    App\Repository\LoggingSomeFakeRepository:
+        decorates: App\Repository\SomeFakeRepository
+        arguments: ['@App\Repository\LoggingSomeFakeRepository.inner']
