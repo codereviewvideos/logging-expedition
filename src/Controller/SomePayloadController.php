@@ -52,6 +52,8 @@ class SomePayloadController extends Controller
             new SomeEvent($placeholder)
         );
 
+        $this->logger->debug('This is logged after SomeEvent has been dispatched in the controller.');
+
         return $this->json(
             [
                 'message' => 'Welcome to your new controller!',
