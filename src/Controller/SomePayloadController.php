@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Event\Events;
 use App\Event\SomeEvent;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,15 +17,20 @@ class SomePayloadController extends Controller
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * SomePayloadController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher, LoggerInterface $logger)
     {
         $this->eventDispatcher = $eventDispatcher;
+        $this->logger          = $logger;
     }
 
     /**
@@ -36,9 +42,9 @@ class SomePayloadController extends Controller
     public function index(string $placeholder = 'default')
     {
         if ($placeholder === 'default') {
-            // log something
+            $this->logger->info('The placeholder was default');
         } else {
-            // log something else
+            $this->logger->notice('The placeholder was NOT default', ['placeholder' => $placeholder]);
         }
 
         $this->eventDispatcher->dispatch(
@@ -46,9 +52,11 @@ class SomePayloadController extends Controller
             new SomeEvent($placeholder)
         );
 
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/SomePayloadController.php',
-        ]);
+        return $this->json(
+            [
+                'message' => 'Welcome to your new controller!',
+                'path'    => 'src/Controller/SomePayloadController.php',
+            ]
+        );
     }
 }
