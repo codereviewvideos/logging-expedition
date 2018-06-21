@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Listener;
+namespace App\Event\Listener;
 
 use App\Event\Events;
 use App\Event\SomeEvent;
@@ -27,6 +27,9 @@ final class SomeEventListener implements EventSubscriberInterface
         $this->logger         = $logger;
     }
 
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -34,6 +37,9 @@ final class SomeEventListener implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @param SomeEvent $event
+     */
     public function onSomeEvent(SomeEvent $event)
     {
         $this->logger->debug('onSomeEvent', ['payload' => $event->getSomePayload()]);
