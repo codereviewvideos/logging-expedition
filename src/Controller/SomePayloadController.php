@@ -46,6 +46,8 @@ class SomePayloadController extends Controller
             new SomeEvent($placeholder)
         );
 
+        // log another thing here
+
         return $this->json([
             'message' => 'Welcome to your new controller!',
             'path' => 'src/Controller/SomePayloadController.php',
